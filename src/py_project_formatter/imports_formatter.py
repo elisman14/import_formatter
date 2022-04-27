@@ -60,6 +60,9 @@ def get_imports(file: str) -> tuple[list[str], ...]:
     #imports[2].append(line)
     
     #imports[2][len(lines[counter:])+1:] = str(counter)
+    for i in range(counter, len(lines)):
+        lines[i] += "\n"
+
     imports[2][counter:] = lines[counter:]
     return imports
 
