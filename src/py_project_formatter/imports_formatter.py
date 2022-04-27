@@ -18,11 +18,15 @@ def sort_imports(file: str) -> str:
     sorted_imports_list: list[list[str]] = [ [], [], [] ]
     sorted_imports_list[0] = sorted(imports[0], key=cmp_to_key(compare_imports), reverse=True)
     sorted_imports_list[1] = sorted(imports[1], key=cmp_to_key(compare_imports), reverse=True)
-    sorted_imports_list[2] = imports[2]
     #return str(imports)
     #text: list[str] = ["\n".join(sorted_imports_list[0]), "\n".join(sorted_imports_list[1]), "\n".join(sorted_imports_list[2])]
     #return "".join(text)
-    return "".join(sorted_imports_list[0]) + "".join(sorted_imports_list[1]) + "".join(sorted_imports_list[2])
+    if len(sorted_imports_list[0]) != 0 or len(sorted_imports_list[1]) != 0:
+        if len(sorted_imports_list[1]) != 0:
+            sorted_imports_list[0].append("\n")
+        sorted_imports_list[1].append("\n\n")
+    
+    return "".join(sorted_imports_list[0]) + "".join(sorted_imports_list[1]) + "".join(imports[2])
 
 
 def compare_imports(a: str, b: str) -> int:
@@ -48,15 +52,12 @@ def get_imports(file: str) -> tuple[list[str], ...]:
         if not line.isspace()
     ]
     counter: int = count_imports_lines(lines)
-    #other_code: list[str] = []
     for line in lines[:counter]:
         if line.startswith("import "):
             imports[0].append(line + "\n")
         elif line.startswith("from "):
             imports[1].append(line + "\n")
-
-    #imports[2].append(line)
-    #imports[2][len(lines[counter:])+1:] = str(counter)
+        
     for i in range(counter, len(lines) - 1):
         lines[i] += "\n"
 
