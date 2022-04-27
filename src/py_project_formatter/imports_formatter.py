@@ -1,4 +1,6 @@
 from functools import cmp_to_key
+
+
 """
 Пройтись по всем файлам в директории    +
 Отфильтровать python файлы              +
@@ -22,10 +24,9 @@ def sort_imports(file: str) -> str:
     #text: list[str] = ["\n".join(sorted_imports_list[0]), "\n".join(sorted_imports_list[1]), "\n".join(sorted_imports_list[2])]
     #return "".join(text)
     if len(sorted_imports_list[0]) != 0 or len(sorted_imports_list[1]) != 0:
-        if len(sorted_imports_list[1]) != 0:
+        if len(sorted_imports_list[1]) != 0 and len(sorted_imports_list[0]) != 0:
             sorted_imports_list[0].append("\n")
         sorted_imports_list[1].append("\n\n")
-    
     return "".join(sorted_imports_list[0]) + "".join(sorted_imports_list[1]) + "".join(imports[2])
 
 
@@ -57,7 +58,6 @@ def get_imports(file: str) -> tuple[list[str], ...]:
             imports[0].append(line + "\n")
         elif line.startswith("from "):
             imports[1].append(line + "\n")
-        
     for i in range(counter, len(lines) - 1):
         lines[i] += "\n"
 

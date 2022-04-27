@@ -1,6 +1,6 @@
-from pyparsing import line
 from py_project_formatter.files_iterator import find_files
 from py_project_formatter.imports_formatter import sort_imports
+from pyparsing import line
 
 
 def do_task():
