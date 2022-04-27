@@ -1,4 +1,4 @@
-from py_project_formatter.imports_formatter import sort_imports 
+from py_project_formatter.imports_formatter import sort_imports
 
 
 def test_sort_imports():
@@ -9,3 +9,4 @@ def test_sort_imports():
             msg: str = f"{after=}, {i=}"
             assert after == mustbe.read(), msg
             mustbe.close()
+

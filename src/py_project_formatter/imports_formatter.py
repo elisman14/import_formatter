@@ -47,10 +47,8 @@ def get_imports(file: str) -> tuple[list[str], ...]:
         for line in file.split("\n")
         if not line.isspace()
     ]
-    
     counter: int = count_imports_lines(lines)
     #other_code: list[str] = []
-    
     for line in lines[:counter]:
         if line.startswith("import "):
             imports[0].append(line + "\n")
@@ -58,9 +56,8 @@ def get_imports(file: str) -> tuple[list[str], ...]:
             imports[1].append(line + "\n")
 
     #imports[2].append(line)
-    
     #imports[2][len(lines[counter:])+1:] = str(counter)
-    for i in range(counter, len(lines)):
+    for i in range(counter, len(lines) - 1):
         lines[i] += "\n"
 
     imports[2][counter:] = lines[counter:]
@@ -81,6 +78,7 @@ def count_imports_lines(lines: list[str]) -> int:
 
 
 #reverse
+
 
 
 
